@@ -1,4 +1,8 @@
 # Chinese-offensive-language-detect
+![image](https://github.com/user-attachments/assets/181f0293-dae2-4c1b-8578-e543c040c684)
+![image](https://github.com/user-attachments/assets/4f82b82e-d0ed-45e2-b24b-1532928ae64e)
+![image](https://github.com/user-attachments/assets/a288f60b-ace6-4814-837c-be441e7153be)
+
 ### 本作品旨在检测下面8类有害言论：
 * 涉黄有害文
 * 谐音涉黄有害文本

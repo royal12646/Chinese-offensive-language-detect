@@ -24,7 +24,7 @@ python Flask/app.py
 
 #开一个新终端
 conda activate off-detect
-cd ./Chinese-offensive-language-detect/Demo/user-procedure
+cd ./Chinese-offensive-language-detect/Demo/User
 node procedure.js
 
 #开一个新终端

@@ -11,12 +11,9 @@ from torchkeras import KerasModel
 
 torch.cuda.set_device(1)
 df_train = pd.read_csv('/mnt/data2/temp1/jsj/dataset/train_aug_tocp.csv')#微调macbert用race,region,gender数据集
-df_test=pd.read_csv("/mnt/data2/temp1/jsj/数据集/out_test.csv")
-
 ds_train = datasets.Dataset.from_pandas(df_train)
 ds_train = ds_train.shuffle(42)
-ds_test=datasets.Dataset.from_pandas(df_test)
-ds_test=ds_test.shuffle(42)
+
 
 #加载模型和tokenizer
 model_path="/mnt/data2/temp1/.cache/modelscope/hub/dienstag/chinese-macbert-base"
@@ -28,11 +25,7 @@ ds_encoded = ds_train.map(lambda example:tokenizer(example["text"],
                     batched=True,
                     batch_size=32,
                     num_proc=2) #支持批处理和多进程map
-# test= ds_test.map(lambda example:tokenizer(example["text"],
-#                     max_length=150,truncation=True,padding='max_length'),
-#                     batched=True,
-#                     batch_size=32,
-#                     num_proc=2) #支持批处理和多进程map
+
 
 #转换成pytorch中的tensor
 ds_encoded.set_format(type="torch",columns = ["input_ids",'attention_mask','token_type_ids','labels'])

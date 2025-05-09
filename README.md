@@ -1,4 +1,14 @@
 # Chinese-offensive-language-detect
+
+## 模型训练
+~~~
+python train.py
+~~~
+
+## 模型测试
+~~~
+python test.py
+~~~
 ![image](https://github.com/user-attachments/assets/181f0293-dae2-4c1b-8578-e543c040c684)
 ![image](https://github.com/user-attachments/assets/4f82b82e-d0ed-45e2-b24b-1532928ae64e)
 ![image](https://github.com/user-attachments/assets/a288f60b-ace6-4814-837c-be441e7153be)

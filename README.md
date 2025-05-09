@@ -4,7 +4,7 @@
 ~~~
 conda create -n off-detect python=3.9
 conda activate off-detect
-pip install requirment.txt
+pip install requirements.txt
 ~~~
 ## 模型训练
 ~~~

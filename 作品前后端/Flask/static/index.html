@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>礼貌用语检测器</title>
+</head>
+<body>
+    <h1>文本攻击性与偏见检测</h1>
+    <textarea id="inputText" rows="4" cols="50"></textarea>
+    <button onclick="sendRequest()">提交</button>
+    <div id="result"></div>
+    
+
+
+    <script>
+        function sendRequest() {
+            const text = document.getElementById('inputText').value;
+            fetch('/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({text: text})
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('result').innerText = data.prediction;
+            });
+        }
+    </script>
+    <style>
+        body {
+            background: linear-gradient(
+                to right, 
+                rgb(113, 65, 168), 
+                rgba(44, 114, 251,1)
+                );
+            text-align: center;
+        }
+        .title{
+            font-size: 45px;
+            font-weight: 700;
+            text-align: center;
+            margin-top: 40px;
+        }
+    </style>
+</body>
+</html>

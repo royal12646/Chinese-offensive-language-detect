@@ -1,0 +1,6 @@
+appbuilder==0.0.20191210.1
+appbuilder_sdk==0.9.0
+Flask==3.0.3
+Flask_Cors==4.0.1
+torch==2.3.1
+transformers==4.42.4

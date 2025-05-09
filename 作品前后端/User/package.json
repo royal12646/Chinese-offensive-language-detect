@@ -1,0 +1,17 @@
+{
+  "description": "",
+  "dependencies": {
+    "async-lock": "^1.4.1",
+    "axios": "^1.6.8",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "cron": "^3.1.7",
+    "element-ui": "^2.15.14",
+    "express": "^4.19.2",
+    "multer": "^1.4.5-lts.1",
+    "mysql": "^2.18.1",
+    "node-cron": "^3.0.3",
+    "tencentcloud-sdk-nodejs": "^4.0.854",
+    "ws": "^8.17.0"
+  }
+}

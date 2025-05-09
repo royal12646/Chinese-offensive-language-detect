@@ -10,7 +10,7 @@ from transformers import AutoModelForSequenceClassification
 from torchkeras import KerasModel
 
 torch.cuda.set_device(1)
-df_train = pd.read_csv('/mnt/data2/temp1/jsj/dataset/train_aug_tocp.csv')#微调macbert用race,region,gender数据集
+df_train = pd.read_csv('./dataset/Aug_SexHate.csv.csv')#微调macbert, 利用dataset里面三个数据集
 ds_train = datasets.Dataset.from_pandas(df_train)
 ds_train = ds_train.shuffle(42)
 

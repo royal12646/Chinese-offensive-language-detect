@@ -1,5 +1,11 @@
 # Chinese-offensive-language-detect
 
+## 环境配置
+~~~
+conda create -n off-detect python=3.9
+conda activate off-detect
+pip install requirment.txt
+~~~
 ## 模型训练
 ~~~
 python train.py
@@ -9,6 +15,24 @@ python train.py
 ~~~
 python test.py
 ~~~
+
+## Demo运行
+~~~
+cd ./Chinese-offensive-language-detect/Demo
+sudo ufw allow 5000/tcp
+python Flask/app.py
+
+#开一个新终端
+conda activate off-detect
+cd ./Chinese-offensive-language-detect/Demo/user-procedure
+node procedure.js
+
+#开一个新终端
+conda activate off-detect
+cd ./Chinese-offensive-language-detect/Demo/
+npm run dev
+~~~
+
 ![image](https://github.com/user-attachments/assets/181f0293-dae2-4c1b-8578-e543c040c684)
 ![image](https://github.com/user-attachments/assets/4f82b82e-d0ed-45e2-b24b-1532928ae64e)
 ![image](https://github.com/user-attachments/assets/a288f60b-ace6-4814-837c-be441e7153be)

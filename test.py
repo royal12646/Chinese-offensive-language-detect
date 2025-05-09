@@ -1,18 +1,31 @@
-
-# ---------------------------------------------------------测试
-# 加载评价器
+import pandas as pd
+import torch
+from torch.utils.data import DataLoader
+import datasets
+from transformers import AutoTokenizer
+import torchvision.models as models
+import torch
 import evaluate
+from transformers import AutoModelForSequenceClassification
+from torchkeras import KerasModel
+import evaluate
+
+df_test=pd.read_csv("/mnt/data2/temp1/jsj/数据集/out_test.csv")
+ds_test=datasets.Dataset.from_pandas(df_test)
+ds_test=ds_test.shuffle(42)
+test= ds_test.map(lambda example:tokenizer(example["text"],
+                    max_length=150,truncation=True,padding='max_length'),
+                    batched=True,
+                    batch_size=32,
+                    num_proc=2) #支持批处理和多进程map
+
 metric = evaluate.load("/mnt/data2/temp1/jsj/Macbert/evaluate/metrics/accuracy")
-#torch.save(model,'/mnt/data2/temp1/jsj/Macbert/four.pth')
+
 # 加载模型
+model_path="/mnt/data2/temp1/.cache/modelscope/hub/dienstag/chinese-macbert-base"
+model = AutoModelForSequenceClassification.from_pretrained(model_path, num_labels=2)
 model.load_state_dict(torch.load('/mnt/data2/temp1/jsj/Macbert/tocp.pth'))
-#model_path="/mnt/data2/temp1/.cache/modelscope/hub/dienstag/chinese-macbert-base"
-# model = AutoModelForSequenceClassification.from_pretrained(model_path, num_labels=2)
-#model.load_state_dict(torch.load('/mnt/data2/temp1/jsj/Macbert/shanchu_four.pt'))
 tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True) #需要和模型一致
-
-
-
 model.eval()
 
 # 用于统计批次的计数器
@@ -30,9 +43,9 @@ with torch.no_grad():
         predictions = torch.argmax(logits, dim=-1)
         print(f"predictions: {predictions}")
         metric.add_batch(predictions=predictions, references=batch["labels"])
-        # 更新总样本数
+
         total_samples += len(predictions)
-        # 统计每个标签的准确率
+
         for label in range(2):  # 假设有num_labels个标签
             mask = batch["labels"] == label
             if mask.any():  # 确保标签在批次中至少出现了一次

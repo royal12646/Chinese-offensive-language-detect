@@ -9,24 +9,29 @@
 若您对数据集中某些内容存在敏感或伦理担忧，请及时与作者联系协商处理。
 本数据集完全符合科研伦理要求，旨在推动更安全、更加鲁棒的中文自然语言处理系统的发展。
 
+
+
 ## 环境配置
-~~~
-conda create -n off-detect python=3.9
+~~~bash
+conda create -n off-detect python=3.10
 conda activate off-detect
-pip install requirements.txt
+pip install -r requirements.txt
 ~~~
+请访问 [PyTorch](https://pytorch.org/) 官网为你的机器配置 PyTorch，因部分代码存在问题，建议不安装 torchvision。
+
 ## 模型训练
-~~~
+
+~~~bash
 python train.py
 ~~~
 
 ## 模型测试
-~~~
+~~~bash
 python test.py
 ~~~
 
 ## Demo运行
-~~~
+~~~bash
 cd ./Chinese-offensive-language-detect/Demo
 sudo ufw allow 5000/tcp
 python Flask/app.py
@@ -153,7 +158,7 @@ Safe:
 
 ## 检测方法
 ﻿考虑到训练和推理成本，我们选择开源大模型hfl/chinese-macbert-base进行微调训练，基于此模型和上述3个自建数据集，我们构建了三个检测器D1（涉黄文本检测器）、D2（辱骂文本检测器）、D3（地域/种族/性别偏见检测器）。每个检测器都能检测对应的有害文本，此外，我们利用集成学习的方法，构建了一个通用检测器，如下图所示。
- 
+
 我们首先将文本分别输入三个检测器，得到每个检测器预测该文本为有害文本的概率p1、p2、p3，然后各个概率乘以一个可学习的参数α1、α2、α3，再将他们的结果相加起来，如果大于0.5，则该文本被认定为有害文本，否则认定为无害文本。
 ![image](https://github.com/user-attachments/assets/018dcd2b-4160-4dda-be6f-f8f68c1e5909)
 

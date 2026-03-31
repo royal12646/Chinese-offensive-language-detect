@@ -1,14 +1,9 @@
 import pandas as pd
-import torch
-from torch.utils.data import DataLoader
 import datasets
 from transformers import AutoTokenizer
-import torchvision.models as models
 import torch
 import evaluate
 from transformers import AutoModelForSequenceClassification
-from torchkeras import KerasModel
-import evaluate
 
 df_test=pd.read_csv("/mnt/data2/temp1/jsj/数据集/out_test.csv")
 ds_test=datasets.Dataset.from_pandas(df_test)
